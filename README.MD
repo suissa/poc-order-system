@@ -69,7 +69,7 @@ Para que nossa busca principal, que é a listagem dos pedidos do usuário, seja 
 
 Para inserir um produto nós na verdade precisamos alterar nosso usuário e atualizar o *array* de pedidos adicionando o objeto do nosso produto, por isso usamoso seguinte objeto modificador com a função de *update*:
 
-  var mod = {$push: {"orders.products": product}};
+    var mod = {$push: {"orders.products": product}};
 
     Model.update(query, mod, function(err, data) {
       cb(err, data, res);
