@@ -43,7 +43,6 @@ module.exports = {
   addProduct: function (req, res, cb) {
     var query = {_id: req.params.id};
     var product = req.body;
-    console.log('product', product);
     var mod = {$push: {"orders.products": product}};
 
     Model.update(query, mod, function(err, data) {
