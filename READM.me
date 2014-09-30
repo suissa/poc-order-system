@@ -3,7 +3,7 @@ Nesse post abordarei uma modelagem um pouco mais complexa que de um sistema de b
 
 Nosso sistema precisa ter a capacidade de armazenar vários tipos diferentes de objetos e seu relecaionamentos, isso pode implicar em vários problemas na modelagem quando se está pensando no modelo relacional ainda.
 
-{<2>}![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_19_03_AM.png)
+{<2>}![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_19_03_AM.png)
 
 Nessa modelagem temos o produto que possui categoria e tags, o pedido que é ligado a produtos e usuários. E nosso usuário possui endereço com cidade, estado e país.
 
@@ -18,17 +18,17 @@ Partindo dessa informação podemos iniciar a modelagem da agregação no MongoD
 Ok, então vamos ao código que ficará mais fácil.
 
 ##Produto
-{<12>}![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_03_29_AM.png)
+{<12>}![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_03_29_AM.png)
 
 Nesse agregado juntamos as informações do produto com categoria e tags.
 
 ##Pedido
-{<6>}![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_35_01_AM.png)
+{<6>}![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_35_01_AM.png)
 
 No agregado do pedido ligamos os produtos e o usuário.
 
 ##Usuário
-{<8>}![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_38_02_AM.png)
+{<8>}![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_38_02_AM.png)
 Para o usuário nós agregamos o endereço, cidade, estado e país.
 
 ##Conclusão
@@ -41,7 +41,7 @@ Exatamente!
 
 Mas calma essa modelagem ainda não está ótima, vamos refatorar ela levando em mente que a função principal do nosso sistema de gerenciamento é a listagem dos pedidos feitos pelo usuário, nesse caso vamos agregar o pedido na coleção de usuário ficando assim:
 
-{<10>}![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_44_33_AM.png)
+{<10>}![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_44_33_AM.png)
 
 Mas por que isso tio Suissa?
 
@@ -50,25 +50,25 @@ Para que nossa busca principal, que é a listagem dos pedidos do usuário, seja 
 ##API
 
 ###Inserindo produto
-{<14>}![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_49_51_AM.png)
+{<14>}![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_49_51_AM.png)
 
-{<15>}![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_50_14_AM.png)
+{<15>}![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_50_14_AM.png)
 
 
 ##Inserindo usuário
-{<17>}![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_06_50_AM.png)
+{<17>}![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_06_50_AM.png)
 
-{<18>}![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_07_23_AM.png)
+{<18>}![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_07_23_AM.png)
 
 ##Adicionando Produto ao Pedido
-{<20>}![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_44_34_AM.png)
-{<22>}![API Route](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_48_15_AM.png)
-{<21>}![Controller](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_47_25_AM.png)
+{<20>}![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_44_34_AM.png)
+{<22>}![API Route](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_48_15_AM.png)
+{<21>}![Controller](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_47_25_AM.png)
 
+Para inserir um produto nós na verdade precisamos alterar nosso usuário e atualizar o *array* de pedidos adicionando o objeto do nosso produto, por isso usamoso seguinte objeto modificador com a função de *update*:
 
-##Show me the code
-Códido de exemplo: [https://github.com/suissa/poc-order-system](https://github.com/suissa/poc-order-system)
+  var mod = {$push: {"orders.products": product}};
 
-ps: Esse artigo será atualizado até demonstrar todas as funcionalidades básicas que uma API precisa ter para trabalhar com um sistema simples de pedidos.
-
-ps2: Ainda farei o comparativo usando SQLs
+    Model.update(query, mod, function(err, data) {
+      cb(err, data, res);
+    });
