@@ -12,6 +12,17 @@ var cbResponseJSON = function (err, data, res) {
   }
   res.json(msg);
 }
+var cbAsyncResponseJSON = function (err, data, res, callback) {
+  if (err){
+    console.log('Erro: ', err);
+    msg = 'Erro: ' + err;
+  } else {
+    console.log('RESPOSTA: ', data);
+    msg = data;
+  }
+  res.json(msg);
+  callback();
+}
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -31,7 +42,7 @@ router.put('/:id', function(req, res) {
 });
 
 router.put('/:id/addproduct', function(req, res) {
-  Controller.addProduct(req, res, cbResponseJSON);
+  Controller.addProduct(req, res, cbAsyncResponseJSON);
 });
 
 router.delete('/:id', function(req, res) {

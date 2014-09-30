@@ -1,5 +1,6 @@
 var Model = UserModel;
 var  msg = '';
+var async = require('async');
 
 module.exports = {
   create: function (req, res, cb) {
@@ -40,13 +41,27 @@ module.exports = {
       cb(err, data, res);
     });
   },
-  addProduct: function (req, res, cb) {
+  addProduct: function (req, res, cbAsync) {
     var query = {_id: req.params.id};
     var product = req.body;
     var mod = {$push: {"orders.products": product}};
 
-    Model.update(query, mod, function(err, data) {
-      cb(err, data, res);
-    });
+    async.series([
+      function(callback) {
+        console.log('serie 1');
+        Model.update(query, mod, function(err, data) {
+          cbAsync(err, data, res, callback);
+        });
+      },
+      function(callback) {
+        console.log('serie 2');
+        var query = {_id: product.product};
+        var mod = {$inc: {stock: -product.quantity}};
+
+        ProductModel.update(query, mod, function(err, data) {
+          cbAsync(err, data, res, callback);
+        });
+      }
+    ]);
   }
 };
