@@ -30,6 +30,10 @@ router.put('/:id', function(req, res) {
   Controller.update(req, res, cbResponseJSON);
 });
 
+router.put('/:id/addproduct', function(req, res) {
+  Controller.addProduct(req, res, cbResponseJSON);
+});
+
 router.delete('/:id', function(req, res) {
   Controller.del(req, res, cbResponseJSON);
 });
