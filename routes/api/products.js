@@ -18,6 +18,14 @@ router.get('/', function(req, res) {
   Controller.retrieve(req, res, cbResponseJSON);
 });
 
+router.get('/category/:category', function(req, res) {
+  Controller.getByCategory(req, res, cbResponseJSON);
+});
+
+router.get('/tag/:tag', function(req, res) {
+  Controller.getByTag(req, res, cbResponseJSON);
+});
+
 router.get('/:id', function(req, res) {
   Controller.show(req, res, cbResponseJSON);
 });

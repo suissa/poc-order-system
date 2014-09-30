@@ -15,6 +15,22 @@ module.exports = {
       cb(err, data, res, view);
     });
   },
+  getByCategory: function (req, res, cb) {
+    var category = req.params.category;
+    var query = {category: new RegExp(category, 'gi')};
+
+    Model.find(query, function (err, data) {
+      cb(err, data, res);
+    });
+  },
+  getByTag: function (req, res, cb) {
+    var tag = req.params.tag;
+    var query = {tags: {$in: [new RegExp(tag, 'gi')]} };
+
+    Model.find(query, function (err, data) {
+      cb(err, data, res);
+    });
+  },
   show: function (req, res, cb) {
     var query = {_id: req.params.id};
 
