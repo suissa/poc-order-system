@@ -3,7 +3,7 @@ Nesse post abordarei uma modelagem um pouco mais complexa que de um sistema de b
 
 Nosso sistema precisa ter a capacidade de armazenar vários tipos diferentes de objetos e seu relecaionamentos, isso pode implicar em vários problemas na modelagem quando se está pensando no modelo relacional ainda.
 
-![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_19_03_AM.png)
+http://nomadev.com.br/![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_19_03_AM.png)
 
 Nessa modelagem temos o produto que possui categoria e tags, o pedido que é ligado a produtos e usuários. E nosso usuário possui endereço com cidade, estado e país.
 
@@ -18,15 +18,15 @@ Partindo dessa informação podemos iniciar a modelagem da agregação no MongoD
 Ok, então vamos ao código que ficará mais fácil.
 
 ##Produto
-![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_03_29_AM.png)
+![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_03_29_AM.png)
 
 Nesse agregado juntamos as informações do produto com categoria e tags.
 
-##Pedido![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_35_01_AM.png)
+##Pedido![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_35_01_AM.png)
 
 No agregado do pedido ligamos os produtos e o usuário.
 
-##Usuário![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_38_02_AM.png)
+##Usuário![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_38_02_AM.png)
 Para o usuário nós agregamos o endereço, cidade, estado e país.
 
 ##Conclusão
@@ -39,7 +39,7 @@ Exatamente!
 
 Mas calma essa modelagem ainda não está ótima, vamos refatorar ela levando em mente que a função principal do nosso sistema de gerenciamento é a listagem dos pedidos feitos pelo usuário, nesse caso vamos agregar o pedido na coleção de usuário ficando assim:
 
-![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_44_33_AM.png)
+![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_44_33_AM.png)
 
 Mas por que isso tio Suissa?
 
@@ -48,20 +48,20 @@ Para que nossa busca principal, que é a listagem dos pedidos do usuário, seja 
 ##API
 
 ###Inserindo produto
-![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_49_51_AM.png)
+![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_49_51_AM.png)
 
-![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_50_14_AM.png)
+![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_50_14_AM.png)
 
 
 ##Inserindo usuário
-![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_06_50_AM.png)
+![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_06_50_AM.png)
 
-![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_07_23_AM.png)
+![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_07_23_AM.png)
 
 ##Adicionando Produto ao Pedido
-![](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_44_34_AM.png)
-![API Route](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_48_15_AM.png)
-![Controller](/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_47_25_AM.png)
+![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_44_34_AM.png)
+![API Route](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_48_15_AM.png)
+![Controller](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_47_25_AM.png)
 
 Para inserir um produto nós na verdade precisamos alterar nosso usuário e atualizar o *array* de pedidos adicionando o objeto do nosso produto, por isso usamoso seguinte objeto modificador com a função de *update*:
 
