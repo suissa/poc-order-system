@@ -26,7 +26,8 @@ Nesse agregado juntamos as informações do produto com categoria e tags.
 
 No agregado do pedido ligamos os produtos e o usuário.
 
-##Usuário![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_38_02_AM.png)
+##Usuário
+![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_9_38_02_AM.png)
 Para o usuário nós agregamos o endereço, cidade, estado e país.
 
 ##Conclusão
@@ -48,17 +49,20 @@ Para que nossa busca principal, que é a listagem dos pedidos do usuário, seja 
 ##API
 
 ###Inserindo produto
+
 ![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_49_51_AM.png)
 
 ![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_10_50_14_AM.png)
 
 
 ##Inserindo usuário
+
 ![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_06_50_AM.png)
 
 ![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_07_23_AM.png)
 
 ##Adicionando Produto ao Pedido
+
 ![](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_44_34_AM.png)
 ![API Route](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_48_15_AM.png)
 ![Controller](http://nomadev.com.br/content/images/2014/Sep/Screen_Shot_2014_09_30_at_11_47_25_AM.png)
